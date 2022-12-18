@@ -1,10 +1,34 @@
 {
-    "students": [
-        {
-            "id": 1,
-            "fullName": "Amrita Dutta",
-            "phone": "+91777-578-8589",
-            "email": "Chandraayan.Chaturvedi30@hotmail.com"
-        }
-    ]
+  "students": [
+    {
+      "fullName": "Amrita Dutta updated12e",
+      "phone": "+91777-578-8589",
+      "email": "updated.Chandraayan.Chaturvedi30@hotmail.com",
+      "id": 1
+    },
+    {
+      "fullName": "Arunesh kumar",
+      "phone": "8971818410",
+      "email": "aruneshkumar.king@gmail.com",
+      "id": 2
+    },
+    {
+      "fullName": "hello updated",
+      "phone": "23456",
+      "email": "asdfg",
+      "id": 3
+    },
+    {
+      "fullName": "Sohan kapoor",
+      "phone": "98763245",
+      "email": "sohan@gmail.com",
+      "id": 4
+    },
+    {
+      "fullName": "Mohan kumar",
+      "phone": "876234578",
+      "email": "mohanraj@gmail.com",
+      "id": 5
+    }
+  ]
 }

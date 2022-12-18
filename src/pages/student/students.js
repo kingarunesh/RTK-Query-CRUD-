@@ -25,7 +25,7 @@ const Students = () => {
                                 cover={<img alt="example" src={`https://i.pravatar.cc/1920?img=${id}`} />}
                                 actions={[
                                     <EyeOutlined key="view" onClick={() => history.push(`/students/${id}`)} />,
-                                    <EditOutlined key="edit" onClick={() => history.push("/students/edit/100")} />,
+                                    <EditOutlined key="edit" onClick={() => history.push(`/students/edit/${id}`)} />,
                                     <DeleteOutlined key="setting" onClick={() => alert("delete item!")} />,
                                 ]}
                             >
