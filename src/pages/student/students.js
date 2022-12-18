@@ -1,15 +1,10 @@
-import { Row, Col, Card, Typography, Spin } from "antd";
-import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
-import { useHistory } from "react-router-dom";
-import { useGetStudentsQuery, useDeleteStudentMutation } from "../../services/students";
-
-const { Title, Paragraph } = Typography;
+import { Row, Spin } from "antd";
+import { useGetStudentsQuery } from "../../services/students";
+import StudentItem from "./StudentItem";
 
 const Students = () => {
     const { data, isFetching } = useGetStudentsQuery();
-    const [deleteStudent] = useDeleteStudentMutation();
 
-    let history = useHistory();
     return (
         <>
             {isFetching ? (
@@ -18,25 +13,8 @@ const Students = () => {
                 </div>
             ) : (
                 <Row gutter={[20, 20]}>
-                    {data.map(({ id, fullName, phone, email }) => (
-                        <Col span={6} key={id}>
-                            <Card
-                                hoverable={true}
-                                bordered={false}
-                                cover={<img alt="example" src={`https://i.pravatar.cc/1920?img=${id}`} />}
-                                actions={[
-                                    <EyeOutlined key="view" onClick={() => history.push(`/students/${id}`)} />,
-                                    <EditOutlined key="edit" onClick={() => history.push(`/students/edit/${id}`)} />,
-                                    <DeleteOutlined key="setting" onClick={() => deleteStudent(id)} />,
-                                ]}
-                            >
-                                <div className="student-info">
-                                    <Title level={5}>{fullName}</Title>
-                                    <Paragraph>{email}</Paragraph>
-                                    <Paragraph>{phone}</Paragraph>
-                                </div>
-                            </Card>
-                        </Col>
+                    {data.map((student) => (
+                        <StudentItem key={student.id} student={student} />
                     ))}
                 </Row>
             )}

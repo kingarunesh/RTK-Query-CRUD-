@@ -1,28 +1,22 @@
 {
   "students": [
     {
-      "fullName": "Arunesh Kumar",
-      "phone": "+916361887530",
-      "email": "1999aruneshkumar@gmail.com",
-      "id": 1
+      "fullName": "Sohan updated",
+      "phone": "2134",
+      "email": "wedfg",
+      "id": 10
     },
     {
       "fullName": "Mohan kumar",
-      "phone": "876234",
+      "phone": "98765234",
       "email": "mohanraj@gmail.com",
-      "id": 2
+      "id": 12
     },
     {
-      "fullName": "ram",
-      "phone": "2134",
-      "email": "ram@gmail.com",
-      "id": 3
-    },
-    {
-      "fullName": "Arunesh Kumar",
-      "phone": "+916361887530",
-      "email": "1999aruneshkumar@gmail.com",
-      "id": 4
+      "fullName": "Karthik",
+      "phone": "987651234",
+      "email": "kartick@gmail.com",
+      "id": 13
     }
   ]
 }
