@@ -1,13 +1,20 @@
 import React from "react";
 import { Row, Col, Card, Image, Descriptions, Spin } from "antd";
-import { useGetStudentByIdQuery } from "../../services/students";
+import { useGetStudentByIdQuery, useGetStudentsQuery } from "../../services/students";
 
 const Student = ({ match }) => {
-    const { data, isFetching } = useGetStudentByIdQuery(match.params.id);
+    // const { data, isFetching } = useGetStudentByIdQuery(match.params.id);
+
+    const { data } = useGetStudentsQuery(undefined, {
+        selectFromResult: ({ data }) => ({
+            data: data?.find((el) => el.id == match.params.id),
+        }),
+    });
 
     return (
         <>
-            {isFetching ? (
+            {/* {isFetching ? ( */}
+            {data == undefined ? (
                 <div className="spinner-wrapper">
                     <Spin size="large" />
                 </div>
