@@ -1,31 +1,34 @@
 import React from "react";
-import { Row, Col, Card, Image, Descriptions } from "antd";
+import { Row, Col, Card, Image, Descriptions, Spin } from "antd";
+import { useGetStudentByIdQuery } from "../../services/students";
 
-const Student = () => {
-  return (
-    <div>
-      <Card title="View Student Detials">
-        <Row gutter={[0, 20]}>
-          <Col span={8}>
-            <Image width={200} src="https://i.pravatar.cc/300" />
-          </Col>
-          <Col span={16}>
-            <Descriptions title="Subroto Biswas " layout="vertical">
-              <Descriptions.Item label="Full Name">
-                Subroto Biswas
-              </Descriptions.Item>
-              <Descriptions.Item label="Phone Number">
-                +91 111-1111-111
-              </Descriptions.Item>
-              <Descriptions.Item label="E-mail Address">
-                subroto@example.com
-              </Descriptions.Item>
-            </Descriptions>
-          </Col>
-        </Row>
-      </Card>
-    </div>
-  );
+const Student = ({ match }) => {
+    const { data, isFetching } = useGetStudentByIdQuery(match.params.id);
+
+    return (
+        <>
+            {isFetching ? (
+                <div className="spinner-wrapper">
+                    <Spin size="large" />
+                </div>
+            ) : (
+                <Card title="View Student Detials">
+                    <Row gutter={[0, 20]}>
+                        <Col span={8}>
+                            <Image width={200} src={`https://i.pravatar.cc/300?img=${data.id}`} />
+                        </Col>
+                        <Col span={16}>
+                            <Descriptions title="Subroto Biswas " layout="vertical">
+                                <Descriptions.Item label="Full Name">{data.fullName}</Descriptions.Item>
+                                <Descriptions.Item label="Phone Number">{data.phone}</Descriptions.Item>
+                                <Descriptions.Item label="E-mail Address">{data.email}</Descriptions.Item>
+                            </Descriptions>
+                        </Col>
+                    </Row>
+                </Card>
+            )}
+        </>
+    );
 };
 
 export default Student;

@@ -8,7 +8,11 @@ export const studentsApi = createApi({
         getStudents: builder.query({
             query: () => "students",
         }),
+
+        getStudentById: builder.query({
+            query: (id) => `students/${id}`,
+        }),
     }),
 });
 
-export const { useGetStudentsQuery } = studentsApi;
+export const { useGetStudentsQuery, useGetStudentByIdQuery } = studentsApi;
