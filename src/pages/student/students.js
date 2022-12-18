@@ -1,12 +1,13 @@
 import { Row, Col, Card, Typography, Spin } from "antd";
 import { EditOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
-import { useGetStudentsQuery } from "../../services/students";
+import { useGetStudentsQuery, useDeleteStudentMutation } from "../../services/students";
 
 const { Title, Paragraph } = Typography;
 
 const Students = () => {
     const { data, isFetching } = useGetStudentsQuery();
+    const [deleteStudent] = useDeleteStudentMutation();
 
     let history = useHistory();
     return (
@@ -26,7 +27,7 @@ const Students = () => {
                                 actions={[
                                     <EyeOutlined key="view" onClick={() => history.push(`/students/${id}`)} />,
                                     <EditOutlined key="edit" onClick={() => history.push(`/students/edit/${id}`)} />,
-                                    <DeleteOutlined key="setting" onClick={() => alert("delete item!")} />,
+                                    <DeleteOutlined key="setting" onClick={() => deleteStudent(id)} />,
                                 ]}
                             >
                                 <div className="student-info">

@@ -10,6 +10,7 @@ export const studentsApi = createApi({
         // get all students list
         getStudents: builder.query({
             query: () => "students",
+            transformResponse: (res) => res.reverse(),
             providesTags: ["Student"],
         }),
 
@@ -37,7 +38,22 @@ export const studentsApi = createApi({
             }),
             invalidatesTags: ["Student"],
         }),
+
+        // delete student
+        deleteStudent: builder.mutation({
+            query: (id) => ({
+                url: `students/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Student"],
+        }),
     }),
 });
 
-export const { useGetStudentsQuery, useGetStudentByIdQuery, useAddStudentMutation, useUpdateStudentMutation } = studentsApi;
+export const {
+    useGetStudentsQuery,
+    useGetStudentByIdQuery,
+    useAddStudentMutation,
+    useUpdateStudentMutation,
+    useDeleteStudentMutation,
+} = studentsApi;
