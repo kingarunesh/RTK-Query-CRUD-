@@ -1,6 +1,8 @@
-import { useState } from "react";
-import { Input, Row, Col, Button, Card } from "antd";
+import { useState, useEffect } from "react";
+import { Input, Row, Col, Button, Card, message } from "antd";
 import { useAddStudentMutation } from "../../services/students";
+
+const key = "add_student";
 
 const AddStudent = ({ history }) => {
     const [data, setData] = useState({
@@ -9,9 +11,19 @@ const AddStudent = ({ history }) => {
         email: "",
     });
 
-    const [addStudent, { isLoading }] = useAddStudentMutation();
+    const [addStudent, { isLoading, isSuccess }] = useAddStudentMutation();
 
     const handleChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
+
+    useEffect(() => {
+        if (isLoading) {
+            message.loading({ content: "creating new student...", key });
+        }
+
+        if (isSuccess) {
+            message.success({ content: "New Student Created.", key, duration: 3 });
+        }
+    }, [isLoading, isSuccess]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

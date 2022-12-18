@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { Input, Row, Col, Button, Card } from "antd";
+import { Input, Row, Col, Button, Card, message } from "antd";
 import { useGetStudentsQuery, useUpdateStudentMutation } from "../../services/students";
+
+const key = "update_student";
 
 const EditStudent = ({ history, match }) => {
     const { data: studentData } = useGetStudentsQuery(undefined, {
@@ -9,7 +11,7 @@ const EditStudent = ({ history, match }) => {
         }),
     });
 
-    const [updateStudent, { isLoading }] = useUpdateStudentMutation();
+    const [updateStudent, { isLoading, isSuccess }] = useUpdateStudentMutation();
 
     const [data, setData] = useState({
         fullName: "",
@@ -24,6 +26,16 @@ const EditStudent = ({ history, match }) => {
             setData(studentData);
         }
     }, [studentData]);
+
+    useEffect(() => {
+        if (isLoading) {
+            message.loading({ content: "Updating student...", key });
+        }
+
+        if (isSuccess) {
+            message.success({ content: "Updated student successfully.", key, duration: 3 });
+        }
+    }, [isLoading, isSuccess]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
